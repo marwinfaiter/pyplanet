@@ -1,0 +1,47 @@
+version: "3.9"
+
+name: rmt
+services:
+  database:
+    image: mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: pyplanet
+      MYSQL_USER: pyplanet
+      MYSQL_PASSWORD: pyplanet
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - mariadb:/var/lib/mysql
+    restart: always
+  trackmania:
+    image: evotm/trackmania
+    environment:
+      MASTER_LOGIN: ${TRACKMANIA_ACCOUNT_LOGIN}
+      MASTER_PASSWORD: ${TRACKMANIA_ACCOUNT_PASSWORD}
+    volumes:
+      - userdata:/server/UserData
+    depends_on:
+      - database
+    restart: always
+  pyplanet:
+    image: marwinfaiter/pyplanet
+    build:
+      context: .
+    environment:
+      PYPLANET_OWNER: ${TRACKMANIA_PLAYER_ACCOUNT_ID} # Player account ID
+      PYPLANET_DEBUG: 1
+      DB_HOST: database
+      TM_HOST: trackmania
+      DB_USER: pyplanet
+      DB_USER_PASSWORD: pyplanet
+    volumes:
+      - userdata:/pyplanet/server/UserData
+      - ./apps/:/pyplanet/server/apps/
+      - ./settings/base.py:/pyplanet/server/settings/base.py
+    depends_on:
+      - trackmania
+    restart: always
+
+volumes:
+  mariadb:
+  userdata:
