@@ -16,7 +16,7 @@ services:
   trackmania:
     image: evotm/trackmania
     environment:
-      MASTER_LOGIN: ${TRACKMANIA_ACCOUNT_LOGIN}
+      MASTER_LOGIN: ${TRACKMANIA_ACCOUNT_LOGIN} # setup here https://www.trackmania.com/player/dedicated-servers
       MASTER_PASSWORD: ${TRACKMANIA_ACCOUNT_PASSWORD}
     volumes:
       - userdata:/server/UserData
@@ -24,7 +24,7 @@ services:
       - database
     restart: always
   pyplanet:
-    image: marwinfaiter/pyplanet
+    image: releases.docker.buddaphest.se/marwinfaiter/pyplanet
     build:
       context: .
     environment:
@@ -36,7 +36,6 @@ services:
       DB_USER_PASSWORD: pyplanet
     volumes:
       - userdata:/pyplanet/server/UserData
-      - ./apps/:/pyplanet/server/apps/
       - ./settings/base.py:/pyplanet/server/settings/base.py
     depends_on:
       - trackmania
