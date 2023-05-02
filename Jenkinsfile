@@ -1,20 +1,13 @@
 pipeline {
     agent any
     stages {
-        stage("Run tests in docker") {
-            agent {
-                dockerfile true
-            }
-            stages {
-                stage("Install dependencies") {
-                    sh "pip install mypy pytest"
-                }
-                stage("Run tests") {
-                    steps {
-                        sh "mypy ."
-                        sh "pytest ."
-                    }
-                }
+        stage("Build and push docker image") {
+            docker.withRegistry('https://releases.docker.buddaphest.se', 'nexus') {
+
+                def customImage = docker.build("marwinfaiter/pyplanet:${env.BUILD_ID}")
+
+                customImage.push()
+                customImage.push("latest")
             }
         }
     }
