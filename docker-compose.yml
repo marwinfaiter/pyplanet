@@ -1,6 +1,6 @@
 version: "3.9"
 
-name: rmt
+name: pyplanet
 services:
   database:
     image: mariadb
@@ -12,7 +12,6 @@ services:
     command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     volumes:
       - mariadb:/var/lib/mysql
-    restart: always
   trackmania:
     image: evotm/trackmania
     environment:
@@ -22,7 +21,6 @@ services:
       - userdata:/server/UserData
     depends_on:
       - database
-    restart: always
   pyplanet:
     image: docker.buddaphest.se/marwinfaiter/pyplanet
     build:
@@ -36,10 +34,8 @@ services:
       DB_USER_PASSWORD: pyplanet
     volumes:
       - userdata:/pyplanet/server/UserData
-      - ./settings/base.py:/pyplanet/server/settings/base.py
     depends_on:
       - trackmania
-    restart: always
 
 volumes:
   mariadb:
