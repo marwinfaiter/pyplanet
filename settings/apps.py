@@ -11,11 +11,22 @@ configuration pages.
 # The mandatory defaults are specific per version, refer to the documentation:
 # DOCUMENTATION: http://pypla.net/
 import os
+import sys
+import subprocess
 
 def apps_environment_to_list():
     apps = []
     for app_list in os.environ.get("APPS", "").split(";"):
-        for app in app_list.split("|")[0].split(","):
+        if len(app_list.split("|")) > 1:
+            apps_csv, url = app_list.split("|")
+        else:
+            apps_csv, url = app_list, None
+
+        for app in apps_csv.split(","):
+            if url:
+                subprocess.check_call([sys.executable, "-m", "pip", "install", "-U", "-i", url, app])
+            else:
+                subprocess.check_call([sys.executable, "-m", "pip", "install", "-U", "", app])
             apps.append(app)
 
     return apps
@@ -59,6 +70,6 @@ APPS = {
 
                 # New since 0.10.0, rankings:
                 'pyplanet.apps.contrib.rankings',
-                "random_maps_together"
+                *apps_environment_to_list()
         ]
 }
