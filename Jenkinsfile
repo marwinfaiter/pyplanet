@@ -2,6 +2,9 @@ pipeline {
     agent any
     stages {
         stage("Build and push docker image") {
+            when {
+                branch 'main'
+            }
             steps {
                 script {
                     docker.withRegistry('https://releases.docker.buddaphest.se', 'nexus') {
