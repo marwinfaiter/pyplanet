@@ -7,11 +7,10 @@ for app_string in "${APPS_ARRAY[@]}"
 do
     IFS='|' read -ra URL_APPS_ARRAY <<< "$app_string"
 
-    APPS=${URL_APPS_ARRAY[0]}
     URL=${URL_APPS_ARRAY[1]}
 
-    IFS=',' read -ra APPS <<< "$APPS"
-    for app in "${APPS[@]}"
+    IFS=',' read -ra APPS_ARRAY <<< "${URL_APPS_ARRAY[0]}"
+    for app in "${APPS_ARRAY[@]}"
     do
         if [[ ! -z "$URL" ]]
         then

@@ -13,12 +13,13 @@ configuration pages.
 import os
 
 def apps_environment_to_list():
-    return [
-        app
-        for app_list in os.environ.get("APPS", "").split(";")
-        for apps,_ in app_list.split("|")
-        for app in apps
-    ]
+    apps = []
+    for app_list in os.environ.get("APPS", "").split(";"):
+        for app in app_list.split("|")[0].split(","):
+            apps.append(app)
+
+    return apps
+
 
 APPS = {
         'default': [
@@ -58,6 +59,6 @@ APPS = {
 
                 # New since 0.10.0, rankings:
                 'pyplanet.apps.contrib.rankings',
-                *apps_environment_to_list()
+                "random_maps_together"
         ]
 }
