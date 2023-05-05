@@ -24,7 +24,7 @@ services:
       - database
     restart: always
   pyplanet:
-    image: releases.docker.buddaphest.se/marwinfaiter/pyplanet
+    image: docker.buddaphest.se/marwinfaiter/pyplanet
     build:
       context: .
     environment:
