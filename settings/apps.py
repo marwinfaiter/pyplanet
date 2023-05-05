@@ -17,6 +17,8 @@ import subprocess
 def apps_environment_to_list():
     apps = []
     for app_list in os.environ.get("APPS", "").split(";"):
+        if not app_list: continue
+
         if len(app_list.split("|")) > 1:
             apps_csv, url = app_list.split("|")
         else:
@@ -26,7 +28,7 @@ def apps_environment_to_list():
             if url:
                 subprocess.check_call([sys.executable, "-m", "pip", "install", "-U", "-i", url, app])
             else:
-                subprocess.check_call([sys.executable, "-m", "pip", "install", "-U", "", app])
+                subprocess.check_call([sys.executable, "-m", "pip", "install", "-U", app])
             apps.append(app)
 
     return apps
