@@ -1,5 +1,5 @@
 #!/bin/bash
 
-pip install pyplanet --upgrade
+pip install -U pyplanet
 
 exec server/manage.py start

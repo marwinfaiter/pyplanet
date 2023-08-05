@@ -13,29 +13,29 @@ configuration pages.
 APPS = {
         'default': [
                 'pyplanet.apps.contrib.admin',
-                'pyplanet.apps.contrib.jukebox',
-                'pyplanet.apps.contrib.karma',
-                'pyplanet.apps.contrib.local_records',
-                'pyplanet.apps.contrib.dedimania',  # Will be disabled in Shootmania automatically.
+                # 'pyplanet.apps.contrib.jukebox',
+                # 'pyplanet.apps.contrib.karma',
+                # 'pyplanet.apps.contrib.local_records',
+                # 'pyplanet.apps.contrib.dedimania',  # Will be disabled in Shootmania automatically.
                 'pyplanet.apps.contrib.players',
-                'pyplanet.apps.contrib.info',
-                'pyplanet.apps.contrib.mx',
-                'pyplanet.apps.contrib.transactions',
-                'pyplanet.apps.contrib.sector_times',
-                'pyplanet.apps.contrib.clock',
-                'pyplanet.apps.contrib.funcmd',
+                # 'pyplanet.apps.contrib.info',
+                # 'pyplanet.apps.contrib.mx',
+                # 'pyplanet.apps.contrib.transactions',
+                # 'pyplanet.apps.contrib.sector_times',
+                # 'pyplanet.apps.contrib.clock',
+                # 'pyplanet.apps.contrib.funcmd',
 
                 # You can optionally enable one of the following apps. Please look at this page for more information:
                 # http://pypla.net/#app-docs
 
                 # Live Ranking App. Useful when playing in Laps, Rounds and all sort of Trackmania game modes.
-                'pyplanet.apps.contrib.live_rankings',
+                # 'pyplanet.apps.contrib.live_rankings',
 
                 # Best CP Widget on top of the screen for the Trackmania game.
-                'pyplanet.apps.contrib.best_cps',
+                # 'pyplanet.apps.contrib.best_cps',
 
                 # Use chat-based votes instead of the callvotes of the dedicated server with the voting app.
-                'pyplanet.apps.contrib.voting',
+                # 'pyplanet.apps.contrib.voting',
 
                 # Dynamic Points Limit is meant for Shootmania Royal.
                 # 'pyplanet.apps.contrib.dynamic_points',
@@ -47,6 +47,7 @@ APPS = {
                 # 'pyplanet.apps.contrib.music_server',
 
                 # New since 0.10.0, rankings:
-                'pyplanet.apps.contrib.rankings',
+                # 'pyplanet.apps.contrib.rankings',
+                "it.thexivn.random_maps_together",
         ]
 }
