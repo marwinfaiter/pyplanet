@@ -1,7 +1,7 @@
 FROM python:3.8.15-slim-bullseye AS base
 
 
-RUN pip install pyplanet==0.11.2
+RUN pip install pyplanet==0.11.5
 
 WORKDIR /pyplanet
 
